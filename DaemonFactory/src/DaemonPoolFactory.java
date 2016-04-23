@@ -7,6 +7,7 @@ public class DaemonPoolFactory implements ThreadFactory, Runnable {
     public Thread newThread(Runnable r) {
         Thread t = new Thread(r);
         t.setDaemon(true);
+        System.out.println("Is is a deamon? "+t.isDaemon());
         return t;
     }
 
