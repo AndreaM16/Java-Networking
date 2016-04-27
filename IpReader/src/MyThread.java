@@ -30,12 +30,15 @@ public class MyThread implements Callable {
             e.printStackTrace();
         }
 
+
         while((line = dataIn.readLine()) != null) {
             int test = Integer.parseInt(line.substring(0,line.indexOf('.')));
             if (test >= 128 && test <= 191) count++;
 
         }
         //System.out.println("File "+this.index+" has "+count+" B Class IPs");
+        dataIn.close();
+        
         return count;
     }
 
