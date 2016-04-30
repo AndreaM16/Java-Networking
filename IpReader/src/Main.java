@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        File path = new File("C:\\Users\\Andrea-Toshiba\\Documents\\Java-Networking\\IpReader");
+        File path = new File("D:\\Programming\\Java\\Java-Networking\\IpReader");
         ArrayList<Future<Integer>> list = new ArrayList<Future<Integer>>();
         ArrayList<File> FileList = new ArrayList<File>();
 
@@ -48,7 +48,9 @@ public class Main {
             int count = list.get(i).get();
             char c = (char) count;
 
+
             System.out.println("File Test"+i+" has ASCII count "+c  );
         }
+
     }
 }

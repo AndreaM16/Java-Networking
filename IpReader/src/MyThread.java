@@ -38,7 +38,7 @@ public class MyThread implements Callable {
         }
         //System.out.println("File "+this.index+" has "+count+" B Class IPs");
         dataIn.close();
-        
+
         return count;
     }
 
