@@ -1,5 +1,4 @@
 import java.io.*;
-import java.net.InetAddress;
 import java.util.concurrent.Callable;
 
 /**
@@ -10,6 +9,7 @@ public class Thread implements Callable {
     File index;
 
     public Thread(File ind){
+
         index = ind;
     }
 
@@ -29,8 +29,7 @@ public class Thread implements Callable {
 
         while ((line = dataIn.readLine())!= null){
 
-            String myString = line.toString().split("\\.")[0];
-            Integer k = Integer.valueOf(myString);
+            Integer k = Integer.valueOf(line.split("\\.")[0]);
 
             if (k >= 128 && k<= 191){
                 count++;

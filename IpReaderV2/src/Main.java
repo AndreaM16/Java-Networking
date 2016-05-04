@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        File path = new File("D:\\Programming\\Java\\Java-Networking\\IpReader");
+        File path = new File("D:\\Programming\\Java\\Java-Networking\\IpReaderV2");
         ArrayList<File> list = new ArrayList<File>();
         ArrayList<Future<Integer>> res = new ArrayList<Future<Integer>>();
         File index;
