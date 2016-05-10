@@ -5,11 +5,11 @@ import java.util.concurrent.Future;
 
 public class ReplacerThread implements Runnable{
 
-    ArrayList<Future<String>> hostsList = new ArrayList<Future<String>>();
-    ArrayList<Future<String>> otherList = new ArrayList<Future<String>>();
+    ArrayList<String> hostsList = new ArrayList<String>();
+    ArrayList<String> otherList = new ArrayList<String>();
     File file;
 
-    public ReplacerThread(File myFile, ArrayList<Future<String>> hosts, ArrayList<Future<String>> other){
+    public ReplacerThread(File myFile, ArrayList<String> hosts, ArrayList<String> other){
         file = myFile;
         hostsList = hosts;
         otherList = other;
@@ -29,7 +29,7 @@ public class ReplacerThread implements Runnable{
         }
     }
 
-    public void replacer(File file, ArrayList<Future<String>> hostsList, ArrayList<Future<String>> otherList) throws IOException, ExecutionException, InterruptedException {
+    public void replacer(File file, ArrayList<String> hostsList, ArrayList<String> otherList) throws IOException, ExecutionException, InterruptedException {
 
         FileOutputStream fos = new FileOutputStream(file);
 
@@ -40,7 +40,7 @@ public class ReplacerThread implements Runnable{
           //String myHost = hostsList.get(i).get();
           //String myOther = otherList.get(i).get();
 
-            bw.write(hostsList.get(i).get()+" "+otherList.get(i).get()+" modified");
+            bw.write(hostsList.get(i)+" "+otherList.get(i)+" modified");
             bw.newLine();
 
         }

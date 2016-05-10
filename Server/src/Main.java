@@ -17,9 +17,8 @@ public class Main {
         ArrayList<Future<String>> hostsList = new ArrayList<Future<String>>();
         ArrayList<Future<String>> otherList = new ArrayList<Future<String>>();
         Lock lock = new ReentrantLock();
-        /*String k, j = null;
         ArrayList<String> hostStrings = new ArrayList<String>();
-        ArrayList<String> otherStrings = new ArrayList<String>();*/
+        ArrayList<String> otherStrings = new ArrayList<String>();
 
         for (File file: path.listFiles()){
             if (file.toString().endsWith(".txt")){
@@ -27,7 +26,7 @@ public class Main {
             }
         }
 
-        ExecutorService hostsExec = Executors.newCachedThreadPool();
+        ExecutorService hostsExec = Executors.newFixedThreadPool(2);
         lock.lock();
         try {
             hostsList.add(hostsExec.submit(new HostsThread(myFile)));
@@ -35,6 +34,7 @@ public class Main {
             hostsExec.shutdown();
             lock.unlock();
         }
+
 
         ExecutorService otherExec = Executors.newCachedThreadPool();
         lock.lock();
@@ -45,20 +45,21 @@ public class Main {
             lock.unlock();
         }
 
-        /*
+
         for (int i=0; i<=hostsList.size();i++){
-            k= hostsList.get(i).get();
+            String k = hostsList.get(i).get();
             System.out.print("Getting "+i+" "+k);
-            j= otherList.get(i).get();
+            String j = otherList.get(i).get();
             System.out.println(", "+j);
             hostStrings.add(k);
             otherStrings.add(j);
-        }*/
+        }
+
 
         ExecutorService replacerExec = Executors.newCachedThreadPool();
         lock.lock();
         try {
-            replacerExec.execute(new ReplacerThread(myFile, hostsList, otherList));
+            replacerExec.execute(new ReplacerThread(myFile, hostStrings, otherStrings));
         } finally {
             replacerExec.shutdown();
             lock.unlock();
